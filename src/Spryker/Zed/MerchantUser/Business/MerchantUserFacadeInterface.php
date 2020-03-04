@@ -7,8 +7,7 @@
 
 namespace Spryker\Zed\MerchantUser\Business;
 
-use Generated\Shared\Transfer\MerchantTransfer;
-use Generated\Shared\Transfer\MerchantUserCriteriaFilterTransfer;
+use Generated\Shared\Transfer\MerchantUserCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantUserResponseTransfer;
 use Generated\Shared\Transfer\MerchantUserTransfer;
 
@@ -16,44 +15,52 @@ interface MerchantUserFacadeInterface
 {
     /**
      * Specification:
-     * - Creates new or finds an existing user based on merchant contact person.
      * - Creates a new merchant user entity.
      * - Persists the entity to DB.
-     * - Returns MerchantResponseTransfer.isSuccessful = true.
-     * - Returns MerchantResponseTransfer.isSuccessful = false when user is already assigned to another merchant (configurable)
+     * - Returns MerchantUserResponse with newly created MerchantUserTransfer inside
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
+     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
      *
      * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
      */
-    public function createMerchantAdmin(MerchantTransfer $merchantTransfer): MerchantUserResponseTransfer;
+    public function create(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer;
 
     /**
      * Specification:
-     * - Updates user according to merchant personal data and merchant email.
-     * - Returns MerchantResponseTransfer.isSuccessful = true.
-     * - Returns MerchantResponseTransfer.isSuccessful = false when user is already assigned to another merchant (configurable)
+     * - Updates merchantUser with passed MerchantUserTransfer data
+     * - Returns MerchantUserResponse with updated MerchantUserTransfer inside
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
+     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
      *
      * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
      */
-    public function updateMerchantAdmin(MerchantTransfer $merchantTransfer): MerchantUserResponseTransfer;
+    public function update(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer;
 
     /**
      * Specification:
-     * - Finds MerchantUser by provided criteria filter transfer.
-     * - Returns MerchantUserTransfer if found, NULL otherwise.
+     * - Disable merchantUsers that related to given criteria
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaFilterTransfer $merchantUserCriteriaFilterTransfer
+     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
+     *
+     * @return void
+     */
+    public function disableMerchantUsers(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): void;
+
+    /**
+     * Specification:
+     * - Searching for merchantUser by given criteria
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
      *
      * @return \Generated\Shared\Transfer\MerchantUserTransfer|null
      */
-    public function findOne(MerchantUserCriteriaFilterTransfer $merchantUserCriteriaFilterTransfer): ?MerchantUserTransfer;
+    public function find(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?MerchantUserTransfer;
 }
