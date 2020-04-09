@@ -5,9 +5,9 @@
  * Use of this software requires acceptance of the Spryker Marketplace License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\MerchantUser\Business\MerchantUser;
+namespace Spryker\Zed\MerchantUser\Business\Reader;
 
-use Generated\Shared\Transfer\MerchantUserCriteriaFilterTransfer;
+use Generated\Shared\Transfer\MerchantUserCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantUserTransfer;
 use Spryker\Zed\MerchantUser\Business\Exception\CurrentMerchantUserNotFoundException;
 use Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface;
@@ -47,7 +47,7 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
     public function getCurrentMerchantUser(): MerchantUserTransfer
     {
         $userTransfer = $this->userFacade->getCurrentUser();
-        $merchantUserCriteriaFilterTransfer = (new MerchantUserCriteriaFilterTransfer())->setIdUser(
+        $merchantUserCriteriaFilterTransfer = (new MerchantUserCriteriaTransfer())->setIdUser(
             $userTransfer->getIdUser()
         );
 
