@@ -7,12 +7,12 @@
 
 namespace Spryker\Zed\MerchantUser\Dependency\Facade;
 
-interface MerchantUserToAuthFacadeInterface
+interface MerchantUserToUserPasswordResetFacadeInterface
 {
     /**
      * @param string $email
      *
      * @return bool
      */
-    public function requestPasswordReset($email);
+    public function requestPasswordReset(string $email): bool;
 }
