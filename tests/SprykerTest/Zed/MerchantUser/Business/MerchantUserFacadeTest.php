@@ -80,22 +80,9 @@ class MerchantUserFacadeTest extends Unit
     {
         parent::setUp();
 
-        $this->userPasswordResetFacadeMock = $this->getMockBuilder(MerchantUserToUserPasswordResetFacadeInterface::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['requestPasswordReset', 'isValidPasswordResetToken', 'setNewPassword'])
-            ->getMockForAbstractClass();
+        $this->userPasswordResetFacadeMock = $this->createMock(MerchantUserToUserPasswordResetFacadeInterface::class);
 
-        $this->userFacadeMock = $this->getMockBuilder(MerchantUserToUserFacadeInterface::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods([
-                'updateUser',
-                'createUser',
-                'getCurrentUser',
-                'setCurrentUser',
-                'isValidPassword',
-                'getUserCollection',
-            ])
-            ->getMockForAbstractClass();
+        $this->userFacadeMock = $this->createMock(MerchantUserToUserFacadeInterface::class);
     }
 
     /**
