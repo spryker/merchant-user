@@ -32,6 +32,8 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
      */
     protected $merchantFacade;
 
+    protected static ?MerchantUserTransfer $merchantUserTransfer = null;
+
     /**
      * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
      * @param \Spryker\Zed\MerchantUser\Persistence\MerchantUserRepositoryInterface $merchantUserRepository
@@ -54,6 +56,9 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
      */
     public function getCurrentMerchantUser(): MerchantUserTransfer
     {
+        if (static::$merchantUserTransfer !== null) {
+            return static::$merchantUserTransfer;
+        }
         $userTransfer = $this->userFacade->getCurrentUser();
         $merchantUserCriteriaTransfer = (new MerchantUserCriteriaTransfer())->setIdUser(
             $userTransfer->getIdUser(),
@@ -70,7 +75,9 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
         $merchantUserTransfer = reset($merchantUserTransfers);
         $merchantUserTransfer->setUser($userTransfer);
 
-        return $this->expandWithMerchant($merchantUserTransfer);
+        static::$merchantUserTransfer = $this->expandWithMerchant($merchantUserTransfer);
+
+        return static::$merchantUserTransfer;
     }
 
     /**
