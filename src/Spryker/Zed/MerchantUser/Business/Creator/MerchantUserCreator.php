@@ -86,11 +86,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         $this->merchantUserPostCreatePlugins = $merchantUserPostCreatePlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     public function create(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer
     {
         $merchantUserTransfer->requireIdMerchant();
@@ -116,12 +111,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $merchantUserResponseTransfer->setIsSuccessful(true)->setMerchantUser($merchantUserTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     * @param \Generated\Shared\Transfer\MerchantUserResponseTransfer $merchantUserResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     protected function checkForMultipleMerchant(
         MerchantUserTransfer $merchantUserTransfer,
         MerchantUserResponseTransfer $merchantUserResponseTransfer
@@ -139,11 +128,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $merchantUserResponseTransfer->setIsSuccessful(true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return bool
-     */
     protected function hasUserAnotherMerchant(MerchantUserTransfer $merchantUserTransfer): bool
     {
         $existingMerchantUserTransfer = $this->merchantUserRepository->findOne(
@@ -157,11 +141,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $merchantUserTransfer->getIdMerchant() !== $existingMerchantUserTransfer->getIdMerchant();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     protected function persistUserByMerchantUser(UserTransfer $userTransfer): UserTransfer
     {
         $existingUserTransfer = $userTransfer->getUsername()
@@ -180,11 +159,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $this->userFacade->updateUser($existingUserTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer
-     */
     protected function executeMerchantUserPostCreatePlugins(MerchantUserTransfer $merchantUserTransfer): MerchantUserTransfer
     {
         foreach ($this->merchantUserPostCreatePlugins as $merchantUserPostCreatePlugin) {
@@ -194,11 +168,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $merchantUserTransfer;
     }
 
-    /**
-     * @param string $username
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer|null
-     */
     protected function findUserTransfer(string $username): ?UserTransfer
     {
         $userCriteriaTransfer = $this->createUserCriteriaTransfer($username);
@@ -207,11 +176,6 @@ class MerchantUserCreator implements MerchantUserCreatorInterface
         return $userCollectionTransfer->getUsers()->getIterator()->current();
     }
 
-    /**
-     * @param string $username
-     *
-     * @return \Generated\Shared\Transfer\UserCriteriaTransfer
-     */
     protected function createUserCriteriaTransfer(string $username): UserCriteriaTransfer
     {
         $userConditionsTransfer = (new UserConditionsTransfer())->addUsername($username);

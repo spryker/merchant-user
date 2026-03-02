@@ -40,9 +40,6 @@ class GetMerchantUserCollectionTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,9 +47,6 @@ class GetMerchantUserCollectionTest extends Unit
         $this->tester->ensureMerchantUserTableIsEmpty();
     }
 
-    /**
-     * @return void
-     */
     public function testSearchesByMerchantName(): void
     {
         // Arrange
@@ -86,9 +80,6 @@ class GetMerchantUserCollectionTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testSearchesByUserFirstName(): void
     {
         // Arrange
@@ -122,9 +113,6 @@ class GetMerchantUserCollectionTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testSearchesByUserLastName(): void
     {
         // Arrange
@@ -158,9 +146,6 @@ class GetMerchantUserCollectionTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testSearchesByUsername(): void
     {
         // Arrange
@@ -194,9 +179,6 @@ class GetMerchantUserCollectionTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testSearchesByDifferentEqualConditions(): void
     {
         // Arrange
@@ -262,9 +244,6 @@ class GetMerchantUserCollectionTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCollectionSortedByFieldAsc(): void
     {
         // Arrange
@@ -299,9 +278,6 @@ class GetMerchantUserCollectionTest extends Unit
         $this->assertSame('cba', $merchantUserTransfers->getIterator()->offsetGet(2)->getMerchant()->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCollectionSortedByFieldDesc(): void
     {
         // Arrange
@@ -336,9 +312,6 @@ class GetMerchantUserCollectionTest extends Unit
         $this->assertSame('abc', $merchantUserTransfers->getIterator()->offsetGet(2)->getMerchant()->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCollectionSortedByOffsetAndLimit(): void
     {
         $this->markTestSkipped('Test fails randomly in both modes. Tech debt ticket created.');

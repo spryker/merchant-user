@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\MerchantUserTransfer;
 
 interface MerchantUserReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer|null
-     */
     public function findOne(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?MerchantUserTransfer;
 }

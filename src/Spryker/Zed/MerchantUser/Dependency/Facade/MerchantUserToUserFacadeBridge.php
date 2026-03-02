@@ -26,21 +26,11 @@ class MerchantUserToUserFacadeBridge implements MerchantUserToUserFacadeInterfac
         $this->userFacade = $userFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     public function createUser(UserTransfer $userTransfer): UserTransfer
     {
         return $this->userFacade->createUser($userTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $user
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     public function updateUser(UserTransfer $user): UserTransfer
     {
         return $this->userFacade->updateUser($user);
@@ -66,9 +56,6 @@ class MerchantUserToUserFacadeBridge implements MerchantUserToUserFacadeInterfac
         return $this->userFacade->removeUser($idUser);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     public function getCurrentUser(): UserTransfer
     {
         return $this->userFacade->getCurrentUser();
@@ -95,19 +82,11 @@ class MerchantUserToUserFacadeBridge implements MerchantUserToUserFacadeInterfac
         return $this->userFacade->isValidPassword($password, $hash);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserCriteriaTransfer $userCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserCollectionTransfer
-     */
     public function getUserCollection(UserCriteriaTransfer $userCriteriaTransfer): UserCollectionTransfer
     {
         return $this->userFacade->getUserCollection($userCriteriaTransfer);
     }
 
-    /**
-     * @return bool
-     */
     public function hasCurrentUser(): bool
     {
         return $this->userFacade->hasCurrentUser();

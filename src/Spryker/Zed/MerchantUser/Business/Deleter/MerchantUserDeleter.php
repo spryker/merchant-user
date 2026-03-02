@@ -18,19 +18,11 @@ class MerchantUserDeleter implements MerchantUserDeleterInterface
      */
     protected $userFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     */
     public function __construct(MerchantUserToUserFacadeInterface $userFacade)
     {
         $this->userFacade = $userFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     public function delete(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer
     {
         $merchantUserTransfer->requireIdUser();

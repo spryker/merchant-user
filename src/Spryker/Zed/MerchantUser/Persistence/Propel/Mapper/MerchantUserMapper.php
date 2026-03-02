@@ -18,13 +18,6 @@ use Propel\Runtime\Collection\Collection;
 
 class MerchantUserMapper
 {
-    /**
-     * @param \Orm\Zed\MerchantUser\Persistence\SpyMerchantUser $merchantUserEntity
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     * @param bool $withUser
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer
-     */
     public function mapMerchantUserEntityToMerchantUserTransfer(
         SpyMerchantUser $merchantUserEntity,
         MerchantUserTransfer $merchantUserTransfer,
@@ -46,12 +39,6 @@ class MerchantUserMapper
         return $merchantUserTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Merchant\Persistence\SpyMerchant $merchantEntity
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer
-     */
     protected function mapMerchantEntityToMerchantTransfer(
         SpyMerchant $merchantEntity,
         MerchantTransfer $merchantTransfer
@@ -59,12 +46,6 @@ class MerchantUserMapper
         return $merchantTransfer->fromArray($merchantEntity->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\User\Persistence\SpyUser $userEntity
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     protected function mapUserEntityToUserTransfer(
         SpyUser $userEntity,
         UserTransfer $userTransfer
@@ -72,12 +53,6 @@ class MerchantUserMapper
         return $userTransfer->fromArray($userEntity->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     * @param \Orm\Zed\MerchantUser\Persistence\SpyMerchantUser $merchantUserEntity
-     *
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUser
-     */
     public function mapMerchantUserTransferToMerchantUserEntity(
         MerchantUserTransfer $merchantUserTransfer,
         SpyMerchantUser $merchantUserEntity

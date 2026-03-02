@@ -21,11 +21,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
  */
 class MerchantUserRepository extends AbstractRepository implements MerchantUserRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer|null
-     */
     public function findOne(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?MerchantUserTransfer
     {
         $merchantUserQuery = $this->getFactory()->createMerchantUserPropelQuery();
@@ -211,12 +206,6 @@ class MerchantUserRepository extends AbstractRepository implements MerchantUserR
         return $merchantUserQuery;
     }
 
-    /**
-     * @param \Orm\Zed\MerchantUser\Persistence\SpyMerchantUserQuery $merchantUserQuery
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUserQuery
-     */
     protected function applyMerchantUserSorting(
         SpyMerchantUserQuery $merchantUserQuery,
         MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
@@ -229,12 +218,6 @@ class MerchantUserRepository extends AbstractRepository implements MerchantUserR
         return $merchantUserQuery;
     }
 
-    /**
-     * @param \Propel\Runtime\ActiveQuery\ModelCriteria $modelCriteria
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function applyPagination(
         ModelCriteria $modelCriteria,
         PaginationTransfer $paginationTransfer

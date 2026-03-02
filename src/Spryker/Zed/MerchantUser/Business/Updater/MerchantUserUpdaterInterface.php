@@ -13,17 +13,7 @@ use Generated\Shared\Transfer\MerchantUserTransfer;
 
 interface MerchantUserUpdaterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     public function update(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return void
-     */
     public function disable(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): void;
 }

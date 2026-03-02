@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\MerchantUserTransfer;
 
 interface MerchantUserDeleterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     public function delete(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer;
 }

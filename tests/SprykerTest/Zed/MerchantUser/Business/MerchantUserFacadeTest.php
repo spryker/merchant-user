@@ -73,9 +73,6 @@ class MerchantUserFacadeTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -85,9 +82,6 @@ class MerchantUserFacadeTest extends Unit
         $this->userFacadeMock = $this->createMock(MerchantUserToUserFacadeInterface::class);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateReturnsTrueIfUserDoesNotExist(): void
     {
         // Arrange
@@ -107,9 +101,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertInstanceOf(SpyMerchantUser::class, $merchantUserEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateReturnsTrueIfUserExist(): void
     {
         // Arrange
@@ -131,9 +122,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertInstanceOf(SpyMerchantUser::class, $merchantUserEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateReturnsFalseIfUserAlreadyHasMerchant(): void
     {
         // Arrange
@@ -162,9 +150,6 @@ class MerchantUserFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testUpdate(): void
     {
         // Arrange
@@ -192,9 +177,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertTrue($merchantUserResponseTransfer->getIsSuccessful());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateWithNewActiveStatus(): void
     {
         // Arrange
@@ -225,9 +207,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertTrue($merchantUserResponseTransfer->getIsSuccessful());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateWithNewBlockedStatus(): void
     {
         // Arrange
@@ -336,9 +315,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertNull($foundMerchantUserTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testDisableMerchantUsersByMerchantId(): void
     {
         // Arrange
@@ -365,9 +341,6 @@ class MerchantUserFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetCurrentMerchantUserReturnsCorrectMerchantUser(): void
     {
         // Arrange
@@ -386,9 +359,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertEquals($merchantUserTransfer, $currentMerchantUserTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthenticateMerchantUserMerchantUserCallUserFacade(): void
     {
         // Arrange
@@ -407,9 +377,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->authenticateMerchantUser($merchantUserTransfer->setUser($userTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testFindUserForwardsToUserFacade(): void
     {
         // Arrange
@@ -424,9 +391,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->findUser((new UserCriteriaTransfer())->setIdUser($userTransfer->getIdUser()));
     }
 
-    /**
-     * @return void
-     */
     public function testRequestPasswordResetForwardsToUserPasswordResetFacade(): void
     {
         // Arrange
@@ -443,9 +407,6 @@ class MerchantUserFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testIsValidPasswordResetTokenForwardsToUserPasswordResetFacade(): void
     {
         /// Arrange
@@ -458,9 +419,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->isValidPasswordResetToken(static::USER_AUTHENTICATION_TOKEN);
     }
 
-    /**
-     * @return void
-     */
     public function testSetNewPasswordForwardsToUserPasswordResetFacade(): void
     {
         /// Arrange
@@ -473,9 +431,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->setNewPassword(static::USER_AUTHENTICATION_TOKEN, static::USER_PASSWORD);
     }
 
-    /**
-     * @return void
-     */
     public function testSetCurrentMerchantUserCallsUserFacade(): void
     {
         // Arrange
@@ -493,9 +448,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->setCurrentMerchantUser($merchantUserTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testIsValidPasswordCallsUserFacade(): void
     {
         // Arrange
@@ -513,9 +465,6 @@ class MerchantUserFacadeTest extends Unit
         $this->tester->getFacade()->isValidPassword($password, $hash);
     }
 
-    /**
-     * @return void
-     */
     public function testFilterUserRolesWithMetPreconditions(): void
     {
         // Arrange
@@ -546,9 +495,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertSame($roles, []);
     }
 
-    /**
-     * @return void
-     */
     public function testFilterUserRolesWithUnmetPrecondition(): void
     {
         // Arrange
@@ -579,9 +525,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertSame($roles, ['ROLE_BACK_OFFICE_USER']);
     }
 
-    /**
-     * @return void
-     */
     public function testFilterUserRolesWithNoPreconditionPlugins(): void
     {
         // Arrange
@@ -599,9 +542,6 @@ class MerchantUserFacadeTest extends Unit
         $this->assertSame($roles, []);
     }
 
-    /**
-     * @return void
-     */
     protected function initializeFacadeMocks(): void
     {
         $this->tester->setDependency(
@@ -614,9 +554,6 @@ class MerchantUserFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return array
-     */
     public function getMerchantUserPositiveScenarioDataProvider(): array
     {
         return [
@@ -649,9 +586,6 @@ class MerchantUserFacadeTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getMerchantUserNegativeScenarioDataProvider(): array
     {
         return [

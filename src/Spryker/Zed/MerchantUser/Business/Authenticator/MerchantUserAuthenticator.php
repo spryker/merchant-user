@@ -19,19 +19,11 @@ class MerchantUserAuthenticator implements MerchantUserAuthenticatorInterface
      */
     protected $userFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     */
     public function __construct(MerchantUserToUserFacadeInterface $userFacade)
     {
         $this->userFacade = $userFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return void
-     */
     public function authenticateMerchantUser(MerchantUserTransfer $merchantUserTransfer): void
     {
         $userTransfer = $merchantUserTransfer->requireUser()->getUserOrFail();
@@ -39,11 +31,6 @@ class MerchantUserAuthenticator implements MerchantUserAuthenticatorInterface
         $this->updateUserLastLoginDate($userTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
     protected function updateUserLastLoginDate(UserTransfer $userTransfer): void
     {
         $userTransfer->setLastLogin((new DateTime())->format(DateTime::ATOM));

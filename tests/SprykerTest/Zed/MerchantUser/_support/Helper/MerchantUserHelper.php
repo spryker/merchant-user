@@ -20,12 +20,6 @@ class MerchantUserHelper extends Module
     use DataCleanupHelperTrait;
     use LocatorHelperTrait;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer
-     */
     public function haveMerchantUser(MerchantTransfer $merchantTransfer, UserTransfer $userTransfer): MerchantUserTransfer
     {
         $merchantUserEntity = $this->createMerchantUserEntity()
@@ -44,12 +38,6 @@ class MerchantUserHelper extends Module
             ->setMerchant($merchantTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer
-     */
     public function haveMerchantUserWithAclEntities(
         MerchantTransfer $merchantTransfer,
         UserTransfer $userTransfer
@@ -67,9 +55,6 @@ class MerchantUserHelper extends Module
             ->getMerchantUser();
     }
 
-    /**
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUser
-     */
     private function createMerchantUserEntity(): SpyMerchantUser
     {
         return new SpyMerchantUser();

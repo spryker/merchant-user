@@ -23,10 +23,6 @@ class MerchantReader implements MerchantReaderInterface
      */
     protected MerchantUserToUserFacadeInterface $userFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Business\MerchantUserFacadeInterface $merchantUserFacade
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     */
     public function __construct(
         MerchantUserFacadeInterface $merchantUserFacade,
         MerchantUserToUserFacadeInterface $userFacade
@@ -35,9 +31,6 @@ class MerchantReader implements MerchantReaderInterface
         $this->userFacade = $userFacade;
     }
 
-    /**
-     * @return string
-     */
     public function getCurrentUserMerchantName(): string
     {
         $merchantName = '';

@@ -42,11 +42,6 @@ class MerchantUserTwigPlugin extends AbstractPlugin implements TwigPluginInterfa
         return $twig;
     }
 
-    /**
-     * @param \Twig\Environment $twig
-     *
-     * @return \Twig\Environment
-     */
     protected function addTwigGlobalVariables(Environment $twig): Environment
     {
         $twig->addGlobal(

@@ -34,11 +34,6 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
 
     protected static ?MerchantUserTransfer $merchantUserTransfer = null;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     * @param \Spryker\Zed\MerchantUser\Persistence\MerchantUserRepositoryInterface $merchantUserRepository
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToMerchantFacadeInterface $merchantFacade
-     */
     public function __construct(
         MerchantUserToUserFacadeInterface $userFacade,
         MerchantUserRepositoryInterface $merchantUserRepository,
@@ -80,11 +75,6 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
         return static::$merchantUserTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer
-     */
     protected function expandWithMerchant(MerchantUserTransfer $merchantUserTransfer): MerchantUserTransfer
     {
         $merchantTransfer = $this->merchantFacade->findOne(

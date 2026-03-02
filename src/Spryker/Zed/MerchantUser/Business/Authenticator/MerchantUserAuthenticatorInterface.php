@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MerchantUserTransfer;
 
 interface MerchantUserAuthenticatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return void
-     */
     public function authenticateMerchantUser(MerchantUserTransfer $merchantUserTransfer): void;
 }

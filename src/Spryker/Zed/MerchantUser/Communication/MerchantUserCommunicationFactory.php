@@ -21,17 +21,11 @@ use Spryker\Zed\MerchantUser\MerchantUserDependencyProvider;
  */
 class MerchantUserCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantUser\Communication\Reader\MerchantReaderInterface
-     */
     public function createMerchantReader(): MerchantReaderInterface
     {
         return new MerchantReader($this->getFacade(), $this->getUserFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface
-     */
     public function getUserFacade(): MerchantUserToUserFacadeInterface
     {
         return $this->getProvidedDependency(MerchantUserDependencyProvider::FACADE_USER);

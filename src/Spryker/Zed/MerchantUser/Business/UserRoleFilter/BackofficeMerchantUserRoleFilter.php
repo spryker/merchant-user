@@ -71,12 +71,6 @@ class BackofficeMerchantUserRoleFilter implements BackofficeMerchantUserRoleFilt
         return $filteredRoles;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param string $role
-     *
-     * @return bool
-     */
     protected function arePreconditionsMet(UserTransfer $userTransfer, string $role): bool
     {
         foreach ($this->merchantUserRoleFilterPreConditionPlugins as $preConditionPlugin) {
@@ -88,12 +82,6 @@ class BackofficeMerchantUserRoleFilter implements BackofficeMerchantUserRoleFilt
         return true;
     }
 
-    /**
-     * @param array $array
-     * @param string $filteredValue
-     *
-     * @return array
-     */
     protected function filterArray(array $array, string $filteredValue): array
     {
         $result = [];

@@ -49,11 +49,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGINS_MERCHANT_USER_ROLE_FILTER_PRE_CONDITION = 'PLUGINS_MERCHANT_USER_ROLE_FILTER_PRE_CONDITION';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         parent::provideBusinessLayerDependencies($container);
@@ -68,11 +63,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         parent::provideCommunicationLayerDependencies($container);
@@ -82,11 +72,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUserFacade(Container $container): Container
     {
         $container->set(static::FACADE_USER, function (Container $container) {
@@ -98,11 +83,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilTextService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_TEXT, function (Container $container) {
@@ -114,11 +94,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantFacade(Container $container): Container
     {
         $container->set(static::FACADE_MERCHANT, function (Container $container) {
@@ -130,11 +105,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUserPasswordResetFacade(Container $container): Container
     {
         $container->set(static::FACADE_USER_PASSWORD_RESET, function (Container $container) {
@@ -146,11 +116,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantUserPostCreatePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_MERCHANT_USER_POST_CREATE, function (Container $container) {
@@ -168,11 +133,6 @@ class MerchantUserDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantUserRoleFilterPreConditionPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_MERCHANT_USER_ROLE_FILTER_PRE_CONDITION, function (Container $container) {

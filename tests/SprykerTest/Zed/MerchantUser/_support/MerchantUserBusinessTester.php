@@ -31,11 +31,6 @@ class MerchantUserBusinessTester extends Actor
 {
     use _generated\MerchantUserBusinessTesterActions;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUser|null
-     */
     public function findMerchantUser(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?SpyMerchantUser
     {
         $query = $this->createMerchantUserPropelQuery();
@@ -55,17 +50,11 @@ class MerchantUserBusinessTester extends Actor
         return $query->findOne();
     }
 
-    /**
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUserQuery
-     */
     public function createMerchantUserPropelQuery(): SpyMerchantUserQuery
     {
         return SpyMerchantUserQuery::create();
     }
 
-    /**
-     * @return void
-     */
     public function ensureMerchantUserTableIsEmpty(): void
     {
         $this->ensureDatabaseTableIsEmpty($this->createMerchantUserPropelQuery());

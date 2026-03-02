@@ -60,12 +60,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
      */
     protected $merchantUserConfig;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserPasswordResetFacadeInterface $userPasswordResetFacade
-     * @param \Spryker\Zed\MerchantUser\Persistence\MerchantUserRepositoryInterface $merchantUserRepository
-     * @param \Spryker\Zed\MerchantUser\MerchantUserConfig $merchantUserConfig
-     */
     public function __construct(
         MerchantUserToUserFacadeInterface $userFacade,
         MerchantUserToUserPasswordResetFacadeInterface $userPasswordResetFacade,
@@ -78,11 +72,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
         $this->merchantUserConfig = $merchantUserConfig;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserResponseTransfer
-     */
     public function update(MerchantUserTransfer $merchantUserTransfer): MerchantUserResponseTransfer
     {
         $merchantUserTransfer->requireUser();
@@ -104,11 +93,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
         return $merchantUserResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return void
-     */
     public function disable(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): void
     {
         $merchantUserTransfers = $this->merchantUserRepository->find($merchantUserCriteriaTransfer);
@@ -118,12 +102,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $originalUserTransfer
-     * @param \Generated\Shared\Transfer\UserTransfer $updatedUserTransfer
-     *
-     * @return void
-     */
     protected function resetUserPassword(UserTransfer $originalUserTransfer, UserTransfer $updatedUserTransfer): void
     {
         if (
@@ -140,11 +118,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
         }
     }
 
-    /**
-     * @param int $idUser
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer|null
-     */
     protected function findUserTransfer(int $idUser): ?UserTransfer
     {
         $userCriteriaTransfer = $this->createUserCriteriaTransfer($idUser);
@@ -153,11 +126,6 @@ class MerchantUserUpdater implements MerchantUserUpdaterInterface
         return $userCollectionTransfer->getUsers()->getIterator()->current();
     }
 
-    /**
-     * @param int $idUser
-     *
-     * @return \Generated\Shared\Transfer\UserCriteriaTransfer
-     */
     protected function createUserCriteriaTransfer(int $idUser): UserCriteriaTransfer
     {
         $userConditionsTransfer = (new UserConditionsTransfer())->addIdUser($idUser);

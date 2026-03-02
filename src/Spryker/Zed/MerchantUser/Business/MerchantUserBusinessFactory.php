@@ -37,9 +37,6 @@ use Spryker\Zed\MerchantUser\MerchantUserDependencyProvider;
  */
 class MerchantUserBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Creator\MerchantUserCreatorInterface
-     */
     public function createMerchantUserCreator(): MerchantUserCreatorInterface
     {
         return new MerchantUserCreator(
@@ -52,9 +49,6 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Updater\MerchantUserUpdaterInterface
-     */
     public function createMerchantUserUpdater(): MerchantUserUpdaterInterface
     {
         return new MerchantUserUpdater(
@@ -65,9 +59,6 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Deleter\MerchantUserDeleterInterface
-     */
     public function createMerchantUserDeleter(): MerchantUserDeleterInterface
     {
         return new MerchantUserDeleter(
@@ -75,9 +66,6 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Reader\MerchantUserReaderInterface
-     */
     public function createMerchantUserReader(): MerchantUserReaderInterface
     {
         return new MerchantUserReader(
@@ -86,9 +74,6 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Reader\CurrentMerchantUserReaderInterface
-     */
     public function createCurrentMerchantUserReader(): CurrentMerchantUserReaderInterface
     {
         return new CurrentMerchantUserReader(
@@ -98,9 +83,6 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\UserRoleFilter\BackofficeMerchantUserRoleFilterInterface
-     */
     public function createBackofficeMerchantUserRoleFilter(): BackofficeMerchantUserRoleFilterInterface
     {
         return new BackofficeMerchantUserRoleFilter(
@@ -110,49 +92,31 @@ class MerchantUserBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Authenticator\MerchantUserAuthenticatorInterface
-     */
     public function createMerchantUserAuthenticator(): MerchantUserAuthenticatorInterface
     {
         return new MerchantUserAuthenticator($this->getUserFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Business\Reader\UserReaderInterface
-     */
     public function createUserReader(): UserReaderInterface
     {
         return new UserReader($this->getUserFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface
-     */
     public function getUserFacade(): MerchantUserToUserFacadeInterface
     {
         return $this->getProvidedDependency(MerchantUserDependencyProvider::FACADE_USER);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Dependency\Service\MerchantUserToUtilTextServiceInterface
-     */
     public function getUtilTextService(): MerchantUserToUtilTextServiceInterface
     {
         return $this->getProvidedDependency(MerchantUserDependencyProvider::SERVICE_UTIL_TEXT);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserPasswordResetFacadeInterface
-     */
     public function getUserPasswordResetFacade(): MerchantUserToUserPasswordResetFacadeInterface
     {
         return $this->getProvidedDependency(MerchantUserDependencyProvider::FACADE_USER_PASSWORD_RESET);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToMerchantFacadeInterface
-     */
     public function getMerchantFacade(): MerchantUserToMerchantFacadeInterface
     {
         return $this->getProvidedDependency(MerchantUserDependencyProvider::FACADE_MERCHANT);

@@ -9,8 +9,5 @@ namespace Spryker\Zed\MerchantUser\Communication\Reader;
 
 interface MerchantReaderInterface
 {
-    /**
-     * @return string
-     */
     public function getCurrentUserMerchantName(): string;
 }

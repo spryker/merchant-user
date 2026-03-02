@@ -27,10 +27,6 @@ class MerchantUserReader implements MerchantUserReaderInterface
      */
     protected $userFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Persistence\MerchantUserRepositoryInterface $merchantUserRepository
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     */
     public function __construct(
         MerchantUserRepositoryInterface $merchantUserRepository,
         MerchantUserToUserFacadeInterface $userFacade
@@ -39,11 +35,6 @@ class MerchantUserReader implements MerchantUserReaderInterface
         $this->userFacade = $userFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer|null
-     */
     public function findOne(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?MerchantUserTransfer
     {
         $merchantUserTransfer = $this->merchantUserRepository->findOne($merchantUserCriteriaTransfer);
@@ -61,11 +52,6 @@ class MerchantUserReader implements MerchantUserReaderInterface
         );
     }
 
-    /**
-     * @param int $idUser
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer|null
-     */
     protected function findUserTransfer(int $idUser): ?UserTransfer
     {
         $userCriteriaTransfer = $this->createUserCriteriaTransfer($idUser);
@@ -74,11 +60,6 @@ class MerchantUserReader implements MerchantUserReaderInterface
         return $userCollectionTransfer->getUsers()->getIterator()->current();
     }
 
-    /**
-     * @param int $idUser
-     *
-     * @return \Generated\Shared\Transfer\UserCriteriaTransfer
-     */
     protected function createUserCriteriaTransfer(int $idUser): UserCriteriaTransfer
     {
         $userConditionsTransfer = (new UserConditionsTransfer())->addIdUser($idUser);

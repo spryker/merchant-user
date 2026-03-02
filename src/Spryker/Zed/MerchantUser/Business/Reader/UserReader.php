@@ -20,9 +20,6 @@ class UserReader implements UserReaderInterface
      */
     protected MerchantUserToUserFacadeInterface $userFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface $userFacade
-     */
     public function __construct(MerchantUserToUserFacadeInterface $userFacade)
     {
         $this->userFacade = $userFacade;
@@ -46,22 +43,11 @@ class UserReader implements UserReaderInterface
         return $userCollectionTransfer->getUsers()->getIterator()->current();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserCriteriaTransfer $userCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserCollectionTransfer
-     */
     public function getUserCollection(UserCriteriaTransfer $userCriteriaTransfer): UserCollectionTransfer
     {
         return $this->userFacade->getUserCollection($userCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserCriteriaTransfer $userCriteriaTransfer
-     * @param \Generated\Shared\Transfer\UserConditionsTransfer $userConditionsTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserConditionsTransfer
-     */
     protected function addConditionsFromCriteriaTransfer(
         UserCriteriaTransfer $userCriteriaTransfer,
         UserConditionsTransfer $userConditionsTransfer

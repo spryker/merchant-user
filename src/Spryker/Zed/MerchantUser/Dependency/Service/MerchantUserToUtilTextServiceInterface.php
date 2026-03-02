@@ -9,10 +9,5 @@ namespace Spryker\Zed\MerchantUser\Dependency\Service;
 
 interface MerchantUserToUtilTextServiceInterface
 {
-    /**
-     * @param int $length
-     *
-     * @return string
-     */
     public function generateRandomString(int $length): string;
 }

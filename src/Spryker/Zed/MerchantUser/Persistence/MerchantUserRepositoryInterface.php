@@ -13,11 +13,6 @@ use Generated\Shared\Transfer\MerchantUserTransfer;
 
 interface MerchantUserRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserTransfer|null
-     */
     public function findOne(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): ?MerchantUserTransfer;
 
     /**
@@ -34,11 +29,6 @@ interface MerchantUserRepositoryInterface
      */
     public function getMerchantUsers(MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantUserCollectionTransfer
-     */
     public function getMerchantUserCollection(
         MerchantUserCriteriaTransfer $merchantUserCriteriaTransfer
     ): MerchantUserCollectionTransfer;
