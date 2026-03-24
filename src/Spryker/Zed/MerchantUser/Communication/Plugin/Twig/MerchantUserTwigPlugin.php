@@ -37,7 +37,9 @@ class MerchantUserTwigPlugin extends AbstractPlugin implements TwigPluginInterfa
      */
     public function extend(Environment $twig, ContainerInterface $container): Environment
     {
-        $twig = $this->addTwigGlobalVariables($twig);
+        if (APPLICATION === 'MERCHANT_PORTAL') {
+            $twig = $this->addTwigGlobalVariables($twig);
+        }
 
         return $twig;
     }
