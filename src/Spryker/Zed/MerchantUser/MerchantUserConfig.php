@@ -13,6 +13,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class MerchantUserConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @uses \Orm\Zed\User\Persistence\Map\SpyUserTableMap::COL_STATUS_BLOCKED
      *
      * @var string
