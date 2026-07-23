@@ -25,10 +25,16 @@ class MerchantUserMapper
     ): MerchantUserTransfer {
         $merchantUserTransfer = $merchantUserTransfer->fromArray($merchantUserEntity->toArray(), true)
             ->setIdMerchant($merchantUserEntity->getFkMerchant())
-            ->setIdUser($merchantUserEntity->getFkUser())
-            ->setMerchant(
-                $this->mapMerchantEntityToMerchantTransfer($merchantUserEntity->getSpyMerchant(), new MerchantTransfer()),
+            ->setIdUser($merchantUserEntity->getFkUser());
+
+        /** @var \Orm\Zed\Merchant\Persistence\SpyMerchant|null $merchantEntity */
+        $merchantEntity = $merchantUserEntity->getSpyMerchant();
+
+        if ($merchantEntity !== null) {
+            $merchantUserTransfer->setMerchant(
+                $this->mapMerchantEntityToMerchantTransfer($merchantEntity, new MerchantTransfer()),
             );
+        }
 
         if ($withUser) {
             $merchantUserTransfer->setUser(

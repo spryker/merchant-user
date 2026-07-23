@@ -49,10 +49,10 @@ class MerchantReader implements MerchantReaderInterface
             (new MerchantUserCriteriaTransfer())->setIdUser($userTransfer->getIdUserOrFail()),
         );
 
-        if ($merchantUserTransfer === null) {
+        if ($merchantUserTransfer === null || $merchantUserTransfer->getMerchant() === null) {
             return $merchantName;
         }
 
-        return $merchantUserTransfer->getMerchantOrFail()->getName() ?? $merchantName;
+        return $merchantUserTransfer->getMerchant()->getName() ?? $merchantName;
     }
 }
