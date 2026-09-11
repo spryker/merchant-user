@@ -10,6 +10,7 @@ namespace Spryker\Zed\MerchantUser\Business\Reader;
 use Generated\Shared\Transfer\MerchantCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantUserCriteriaTransfer;
 use Generated\Shared\Transfer\MerchantUserTransfer;
+use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\MerchantUser\Business\Exception\CurrentMerchantUserNotFoundException;
 use Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToMerchantFacadeInterface;
 use Spryker\Zed\MerchantUser\Dependency\Facade\MerchantUserToUserFacadeInterface;
@@ -34,6 +35,8 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
 
     protected static ?MerchantUserTransfer $merchantUserTransfer = null;
 
+    protected static ?int $idUserOfCachedMerchantUser = null;
+
     public function __construct(
         MerchantUserToUserFacadeInterface $userFacade,
         MerchantUserRepositoryInterface $merchantUserRepository,
@@ -51,26 +54,46 @@ class CurrentMerchantUserReader implements CurrentMerchantUserReaderInterface
      */
     public function getCurrentMerchantUser(): MerchantUserTransfer
     {
-        if (static::$merchantUserTransfer !== null) {
+        $merchantUserTransfer = $this->findCurrentMerchantUser($this->userFacade->getCurrentUser());
+
+        if ($merchantUserTransfer === null) {
+            throw new CurrentMerchantUserNotFoundException(
+                'Current merchant user was not found',
+            );
+        }
+
+        return $merchantUserTransfer;
+    }
+
+    public function hasCurrentMerchantUser(): bool
+    {
+        if (!$this->userFacade->hasCurrentUser()) {
+            return false;
+        }
+
+        return $this->findCurrentMerchantUser($this->userFacade->getCurrentUser()) !== null;
+    }
+
+    protected function findCurrentMerchantUser(UserTransfer $userTransfer): ?MerchantUserTransfer
+    {
+        if (static::$merchantUserTransfer !== null && static::$idUserOfCachedMerchantUser === $userTransfer->getIdUser()) {
             return static::$merchantUserTransfer;
         }
-        $userTransfer = $this->userFacade->getCurrentUser();
-        $merchantUserCriteriaTransfer = (new MerchantUserCriteriaTransfer())->setIdUser(
-            $userTransfer->getIdUser(),
-        );
+
+        $merchantUserCriteriaTransfer = (new MerchantUserCriteriaTransfer())
+            ->setIdUser($userTransfer->getIdUser());
 
         $merchantUserTransfers = $this->merchantUserRepository->getMerchantUsers($merchantUserCriteriaTransfer);
 
         if (count($merchantUserTransfers) === 0) {
-            throw new CurrentMerchantUserNotFoundException(
-                'Current merchant user was not found',
-            );
+            return null;
         }
 
         $merchantUserTransfer = reset($merchantUserTransfers);
         $merchantUserTransfer->setUser($userTransfer);
 
         static::$merchantUserTransfer = $this->expandWithMerchant($merchantUserTransfer);
+        static::$idUserOfCachedMerchantUser = $userTransfer->getIdUser();
 
         return static::$merchantUserTransfer;
     }

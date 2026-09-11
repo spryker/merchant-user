@@ -346,6 +346,8 @@ class MerchantUserFacadeTest extends Unit
         // Arrange
         $this->initializeFacadeMocks();
 
+        // Deliberately left at the default `waiting-for-approval` status: a merchant user of a
+        // merchant that is not approved yet still has a current merchant user.
         $merchantTransfer = $this->tester->haveMerchant();
         $userTransfer = $this->tester->haveUser();
         $merchantUserTransfer = $this->tester->haveMerchantUser($merchantTransfer, $userTransfer);
@@ -356,7 +358,55 @@ class MerchantUserFacadeTest extends Unit
         $currentMerchantUserTransfer = $this->tester->getFacade()->getCurrentMerchantUser();
 
         // Assert
-        $this->assertEquals($merchantUserTransfer, $currentMerchantUserTransfer);
+        // Compared by value: seeding the status sends `haveMerchant()` through `updateMerchant()`,
+        // whose returned transfer marks `storeRelation.idStores` as modified, while the merchant
+        // read back from the database does not. That bookkeeping is not what this test is about.
+        $this->assertEquals($merchantUserTransfer->toArray(), $currentMerchantUserTransfer->toArray());
+    }
+
+    public function testHasCurrentMerchantUserReturnsTrueForUserWithMerchantUser(): void
+    {
+        // Arrange
+        $this->initializeFacadeMocks();
+        $userTransfer = $this->tester->haveUser();
+        $this->tester->haveMerchantUser($this->tester->haveMerchant(), $userTransfer);
+        $this->userFacadeMock->method('hasCurrentUser')->willReturn(true);
+        $this->userFacadeMock->method('getCurrentUser')->willReturn($userTransfer);
+
+        // Act
+        $hasCurrentMerchantUser = $this->tester->getFacade()->hasCurrentMerchantUser();
+
+        // Assert
+        $this->assertTrue($hasCurrentMerchantUser);
+    }
+
+    public function testHasCurrentMerchantUserReturnsFalseForUserWithoutMerchantUser(): void
+    {
+        // Arrange
+        $this->initializeFacadeMocks();
+        $userTransfer = $this->tester->haveUser();
+        $this->userFacadeMock->method('hasCurrentUser')->willReturn(true);
+        $this->userFacadeMock->method('getCurrentUser')->willReturn($userTransfer);
+
+        // Act
+        $hasCurrentMerchantUser = $this->tester->getFacade()->hasCurrentMerchantUser();
+
+        // Assert
+        $this->assertFalse($hasCurrentMerchantUser);
+    }
+
+    public function testHasCurrentMerchantUserReturnsFalseWithoutCurrentUser(): void
+    {
+        // Arrange
+        $this->initializeFacadeMocks();
+        $this->userFacadeMock->method('hasCurrentUser')->willReturn(false);
+        $this->userFacadeMock->expects($this->never())->method('getCurrentUser');
+
+        // Act
+        $hasCurrentMerchantUser = $this->tester->getFacade()->hasCurrentMerchantUser();
+
+        // Assert
+        $this->assertFalse($hasCurrentMerchantUser);
     }
 
     public function testAuthenticateMerchantUserMerchantUserCallUserFacade(): void

@@ -141,6 +141,20 @@ class MerchantUserFacade extends AbstractFacade implements MerchantUserFacadeInt
      *
      * @api
      *
+     * @return bool
+     */
+    public function hasCurrentMerchantUser(): bool
+    {
+        return $this->getFactory()
+            ->createCurrentMerchantUserReader()
+            ->hasCurrentMerchantUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
      *
      * @return mixed

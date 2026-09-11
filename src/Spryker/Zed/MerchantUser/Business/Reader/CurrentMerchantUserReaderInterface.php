@@ -17,4 +17,6 @@ interface CurrentMerchantUserReaderInterface
      * @return \Generated\Shared\Transfer\MerchantUserTransfer
      */
     public function getCurrentMerchantUser(): MerchantUserTransfer;
+
+    public function hasCurrentMerchantUser(): bool;
 }

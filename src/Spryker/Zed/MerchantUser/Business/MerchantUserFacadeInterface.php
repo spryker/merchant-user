@@ -117,6 +117,18 @@ interface MerchantUserFacadeInterface
 
     /**
      * Specification:
+     * - Returns true when a current user is set and a merchant user is assigned to it.
+     * - Returns false when no user is acting or the acting user has no merchant user.
+     * - Does not throw for a missing current user, unlike {@link getCurrentMerchantUser()}.
+     *
+     * @api
+     *
+     * @return bool
+     */
+    public function hasCurrentMerchantUser(): bool;
+
+    /**
+     * Specification:
      * - Sets MerchantUser.User to the session.
      *
      * @api
